@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { useDebouncedCallback } from "use-debounce";
 
 import ajax from "../utils/ajax";
 import MovieThumbnail from "./MovieThumbnail";
@@ -7,41 +8,29 @@ import MovieThumbnail from "./MovieThumbnail";
 export default function Search(props) {
   let { movies, setMovies, onClickNominate } = props;
 
+  const [searchInput, setSearchInput] = useState(null);
   const [searching, setSearching] = useState(false);
-  const [searchTimeout, setSearchTimeout] = useState(null);
 
-  const onSearchChange = (e) => {
-    const tempVal = e.target.value;
+  const [debouncedCallback] = useDebouncedCallback((value) => {
+    setSearchInput(value);
+  }, 1000);
 
-    console.log("val");
-    console.log(tempVal);
-    setSearching(false);
-    console.log("timeout start", searchTimeout);
-    clearTimeout(searchTimeout);
-    setSearchTimeout(
-      setTimeout(() => {
-        setSearching(true);
-        console.log("AHHHH");
-        ajax.getMovies(tempVal).then((res) => {
-          console.log(res);
-          setMovies(res.data.Search);
-          setSearching(false);
-          setTimeout(() => {
-            console.log("movies");
-            console.log(movies);
-          });
-        });
-      }, 2000)
-    );
-    console.log("timeout end:", searchTimeout);
-  };
+  useEffect(() => {
+    if (searchInput) {
+      setSearching(true);
+      ajax.getMovies(searchInput).then((res) => {
+        console.log(res);
+        setMovies(res.data.Search);
+        setSearching(false);
+      });
+    }
+  }, [searchInput, setMovies]);
 
-  console.log("Search component rendered", props, searching, searchTimeout);
   return (
     <Section>
       <div className="searchDiv">
         <label>Find a movie!</label>
-        <input onChange={onSearchChange} />
+        <input onChange={(e) => debouncedCallback(e.target.value)} />
         {searching && <div>Searching, please wait...</div>}
       </div>
 
