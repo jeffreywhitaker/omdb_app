@@ -7,8 +7,8 @@ export default function Header() {
     <Section>
       <NavLink to="/">JEFF'S MOVIES APP</NavLink>
       <nav>
-        <NavLink to="/">Main Page</NavLink>
-        <NavLink to="/favorites">Favorites</NavLink>
+        <NavLink to="/search">Search</NavLink>
+        <NavLink to="/nominated">Favorites</NavLink>
       </nav>
     </Section>
   );
