@@ -6,7 +6,7 @@ import ajax from "../utils/ajax";
 import MovieThumbnail from "./MovieThumbnail";
 
 export default function Search(props) {
-  let { movies, setMovies, onClickNominate } = props;
+  let { movies, setMovies, nominated, setNominated, onClickNominate } = props;
 
   const [searchInput, setSearchInput] = useState(null);
   const [searching, setSearching] = useState(false);
@@ -40,6 +40,8 @@ export default function Search(props) {
             return (
               <MovieThumbnail
                 movie={movie}
+                nominated={nominated}
+                setNominated={setNominated}
                 onClickNominate={onClickNominate}
                 key={movie.imdbID}
               />
