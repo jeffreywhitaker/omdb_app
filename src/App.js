@@ -12,13 +12,13 @@ function App() {
 
   function onClickNominate(e, movieToAddOrRemove, whatToDo) {
     e.preventDefault();
-    if (nominated.length >= 5) {
-      alert("Cannot add - please remove at least one movie to add more.");
-      return;
-    }
 
     // add the movie into the array of movies
     if (whatToDo === "add") {
+      if (nominated.length >= 5) {
+        alert("Cannot add - please remove at least one movie to add more.");
+        return;
+      }
       setNominated([...nominated, movieToAddOrRemove]);
       // filter out the removed movie
     } else if (whatToDo === "remove") {
@@ -63,7 +63,7 @@ export default App;
 
 const StyledSection = styled.section`
   > .wrapper {
-    max-width: 900px;
+    max-width: 1100px;
     margin: 0 auto;
   }
 `;

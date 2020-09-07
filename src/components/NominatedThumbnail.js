@@ -16,30 +16,27 @@ export default function NominatedThumbnail(props) {
   }, [imdbID, setCurrMovie]);
 
   if (!currMovie) {
-    return <p>Loading, please wait...</p>;
+    return <p></p>;
   }
 
   return (
-    <Article key={imdbID}>
-      <li>
-        {currMovie.Title}, {currMovie.Year}
-      </li>
-      <li>{currMovie.Rated}</li>
-      <li>{currMovie.Actors}</li>
+    <Article className="card">
+      <img className="card-img-top" src={currMovie.Poster} alt="Promo poster" />
+      <div className="card-body">
+        <h5 className="card-title">{currMovie.Title}</h5>
+        <h6 className="card-subtitle mb-2 text-muted">{currMovie.Year}</h6>
+        <p className="card-text">{currMovie.Rated}</p>
+        <p className="card-text">{currMovie.Actors}</p>
+      </div>
     </Article>
   );
 }
 
 const Article = styled.article`
-  border: 1px solid black;
+  width: 15rem;
   margin: 5px;
-  padding: 5px;
-  min-width: 50px;
-
-  @media only screen and (max-width: 500px) {
-    flex-direction: column;
-    div {
-      width: 90%;
-    }
+  > img {
+    height: 150px;
+    object-fit: cover;
   }
 `;

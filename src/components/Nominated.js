@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 
 import NominatedThumbnail from "./NominatedThumbnail";
 
@@ -10,12 +11,18 @@ export default function Nominated(props) {
   }
 
   return (
-    <div>
+    <Section>
       {nominated.map((movie) => {
         console.log("movie id in nominated", movie.imdbID);
 
         return <NominatedThumbnail imdbID={movie.imdbID} key={movie.imdbID} />;
       })}
-    </div>
+    </Section>
   );
 }
+
+const Section = styled.section`
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 80px;
+`;

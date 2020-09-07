@@ -28,11 +28,27 @@ export default function Search(props) {
 
   return (
     <Section>
-      <div className="searchDiv">
-        <label>Find a movie!</label>
-        <input onChange={(e) => debouncedCallback(e.target.value)} />
-        {searching && <div>Searching, please wait...</div>}
+      <h6>
+        <label>Search for movies!</label>
+      </h6>
+      <div className="input-group mb-3 inputDiv">
+        <div className="input-group-prepend">
+          <span className="input-group-text" id="basic-addon1">
+            Search
+          </span>
+        </div>
+        <input
+          type="text"
+          className="form-control"
+          placeholder="start typing..."
+          aria-label="Search Field"
+          aria-describedby="basic-addon1"
+          onChange={(e) => debouncedCallback(e.target.value)}
+        />
       </div>
+      {searching && <div>Searching, please wait...</div>}
+
+      <br />
 
       <div className="resultsDiv">
         {movies &&
@@ -54,17 +70,19 @@ export default function Search(props) {
 
 const Section = styled.section`
   display: flex;
-  padding: 10px 0;
-  .searchDiv {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    input {
-      max-width: 300px;
-    }
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 0;
+
+  > .inputDiv {
+    max-width: 40%;
   }
+
   .resultsDiv {
-    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
   }
 
   @media only screen and (max-width: 500px) {

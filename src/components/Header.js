@@ -29,6 +29,7 @@ export default function Header(props) {
 const Section = styled.section`
   display: flex;
   flex-direction: column;
+  z-index: 9;
   width: 100%;
   height: 40px;
   background: blue;
@@ -37,10 +38,12 @@ const Section = styled.section`
   margin-bottom: 50px;
 
   > .navContainer {
+    height: 100%;
     display: flex;
 
     > a {
       padding: 10px 15px;
+      color: black;
       text-decoration: none;
       font: Verdana;
       font-style: italic;
@@ -50,6 +53,7 @@ const Section = styled.section`
     > nav {
       display: flex;
       > a {
+        color: black;
         text-decoration: none;
         padding: 10px 15px;
         :hover {
