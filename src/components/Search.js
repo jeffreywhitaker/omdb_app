@@ -10,6 +10,7 @@ export default function Search(props) {
 
   const [searchInput, setSearchInput] = useState(null);
   const [searching, setSearching] = useState(false);
+  const [err, setErr] = useState("");
 
   const [debouncedCallback] = useDebouncedCallback((value) => {
     setSearchInput(value);
@@ -17,11 +18,17 @@ export default function Search(props) {
 
   useEffect(() => {
     if (searchInput) {
+      setErr(null);
       setSearching(true);
       ajax.getMovies(searchInput).then((res) => {
-        console.log(res);
-        setMovies(res.data.Search);
-        setSearching(false);
+        if (res.data.Error) {
+          setErr("No results found - please try again!");
+          setSearching(false);
+        } else {
+          console.log(res);
+          setMovies(res.data.Search);
+          setSearching(false);
+        }
       });
     }
   }, [searchInput, setMovies]);
@@ -48,6 +55,7 @@ export default function Search(props) {
         />
       </div>
       {searching && <div>Searching, please wait...</div>}
+      {err && <div>{err}</div>}
 
       <br />
 

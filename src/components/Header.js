@@ -7,7 +7,7 @@ export default function Header(props) {
 
   return (
     <>
-      <Nav className="navbar navbar-expand-md navbar-dark bg-dark">
+      <Nav className="navbar navbar-expand-sm navbar-dark bg-dark">
         <NavLink className="navbar-brand" to="/">
           JEFF'S MOVIES APP
         </NavLink>

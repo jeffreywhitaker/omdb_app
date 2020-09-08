@@ -11,7 +11,6 @@ export default function NominatedThumbnail(props) {
 
   useEffect(() => {
     ajax.getMovie(imdbID).then((response) => {
-      console.log("movie res", response);
       setCurrMovie(response.data);
     });
   }, [imdbID, setCurrMovie]);

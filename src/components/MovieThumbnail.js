@@ -7,8 +7,6 @@ export default function MovieThumbnail(props) {
   let { Title, Year, imdbID, Poster } = props.movie;
   let { nominated, onClickNominate } = props;
 
-  console.log("movie", props.movie);
-
   return (
     <Article className="card">
       {Poster !== "N/A" ? (
