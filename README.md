@@ -1,6 +1,6 @@
 ## Jeff's Movies App
 
-#### [Live Site](https://omdb-app-8bxykaiju.vercel.app/)
+#### [Live Site](https://omdb-app-inky.vercel.app/)
 
 - An app to search and nominate movies.
 - Made with React & Bootstrap.
