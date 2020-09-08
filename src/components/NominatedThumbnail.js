@@ -17,7 +17,11 @@ export default function NominatedThumbnail(props) {
   }, [imdbID, setCurrMovie]);
 
   if (!currMovie) {
-    return <p></p>;
+    return (
+      <Article className="card">
+        <div className="card-body">Loading...</div>
+      </Article>
+    );
   }
 
   return (
@@ -60,7 +64,6 @@ const Article = styled.article`
   margin: 5px;
   > img {
     max-height: 352px;
-    /* object-fit: cover; */
   }
   > .noImg {
     display: flex;

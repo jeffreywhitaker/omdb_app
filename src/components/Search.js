@@ -29,7 +29,7 @@ export default function Search(props) {
   return (
     <Section>
       <h6>
-        <label>Search for movies!</label>
+        <label>Search for movies by title!</label>
       </h6>
       <span className="text-muted">
         Please use complete words for best results.

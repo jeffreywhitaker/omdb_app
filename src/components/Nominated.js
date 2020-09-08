@@ -30,6 +30,7 @@ export default function Nominated(props) {
 
 const Section = styled.section`
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
-  padding-top: 80px;
+  padding-top: 20px;
 `;

@@ -7,7 +7,7 @@ export default function Header(props) {
 
   return (
     <>
-      <Nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <Nav className="navbar navbar-expand-md navbar-dark bg-dark">
         <NavLink className="navbar-brand" to="/">
           JEFF'S MOVIES APP
         </NavLink>
@@ -52,10 +52,18 @@ const Nav = styled.nav`
   background: lightblue;
 `;
 
-const BannerDiv = styled.nav`
+const BannerDiv = styled.div`
   display: flex;
+  justify-content: center;
   background-color: lightsalmon;
   margin: 0;
-  padding: 2px 0;
   text-align: center;
+  > p {
+    padding: 4px 0;
+    margin: 0;
+  }
+
+  @media only screen and (max-width: 460px) {
+    flex-direction: column;
+  }
 `;
