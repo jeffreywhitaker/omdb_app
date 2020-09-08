@@ -32,7 +32,7 @@ const Section = styled.section`
   z-index: 9;
   width: 100%;
   height: 40px;
-  background: blue;
+  background: lightblue;
   position: fixed;
   top: 0;
   margin-bottom: 50px;
@@ -74,6 +74,7 @@ const Section = styled.section`
     background-color: lightsalmon;
     margin: 0;
     padding: 2px 0;
+    text-align: center;
     > p {
       margin: 0px;
     }

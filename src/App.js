@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Redirect } from "react-router-dom";
 import styled from "styled-components";
 
@@ -10,8 +10,23 @@ function App() {
   const [nominated, setNominated] = useState([]);
   const [movies, setMovies] = useState([]);
 
+  // if nominated list is saved in local storage, aquire it
+  useEffect(() => {
+    if (localStorage.getItem("nominated")) {
+      const tempNominated = localStorage.getItem("nominated");
+      let parsedNominated;
+      try {
+        parsedNominated = JSON.parse(tempNominated);
+        setNominated(parsedNominated);
+      } catch (e) {
+        console.log("error", e);
+      }
+    }
+  }, []);
+
   function onClickNominate(e, movieToAddOrRemove, whatToDo) {
     e.preventDefault();
+    let nominatedToSet = [];
 
     // add the movie into the array of movies
     if (whatToDo === "add") {
@@ -19,14 +34,19 @@ function App() {
         alert("Cannot add - please remove at least one movie to add more.");
         return;
       }
-      setNominated([...nominated, movieToAddOrRemove]);
+      nominatedToSet = [...nominated, movieToAddOrRemove];
+      setNominated(nominatedToSet);
       // filter out the removed movie
     } else if (whatToDo === "remove") {
-      setNominated([
+      nominatedToSet = [
         ...nominated.filter((movie) => {
           return movie.imdbID !== movieToAddOrRemove.imdbID;
         }),
-      ]);
+      ];
+      setNominated(nominatedToSet);
+    }
+    if (nominated.length > 0) {
+      localStorage.setItem("nominated", JSON.stringify(nominatedToSet));
     }
   }
 
@@ -43,7 +63,6 @@ function App() {
             <Search
               movies={movies}
               nominated={nominated}
-              setNominated={setNominated}
               onClickNominate={onClickNominate}
               setMovies={setMovies}
             />
@@ -51,8 +70,12 @@ function App() {
         />
         <Route
           path="/nominated"
-          nominated={nominated}
-          render={() => <Nominated nominated={nominated} />}
+          render={() => (
+            <Nominated
+              nominated={nominated}
+              onClickNominate={onClickNominate}
+            />
+          )}
         />
       </div>
     </StyledSection>

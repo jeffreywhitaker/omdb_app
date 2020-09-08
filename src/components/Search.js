@@ -6,7 +6,7 @@ import ajax from "../utils/ajax";
 import MovieThumbnail from "./MovieThumbnail";
 
 export default function Search(props) {
-  let { movies, setMovies, nominated, setNominated, onClickNominate } = props;
+  let { movies, setMovies, nominated, onClickNominate } = props;
 
   const [searchInput, setSearchInput] = useState(null);
   const [searching, setSearching] = useState(false);
@@ -31,6 +31,9 @@ export default function Search(props) {
       <h6>
         <label>Search for movies!</label>
       </h6>
+      <span className="text-muted">
+        Please use complete words for best results.
+      </span>
       <div className="input-group mb-3 inputDiv">
         <div className="input-group-prepend">
           <span className="input-group-text" id="basic-addon1">
@@ -57,7 +60,6 @@ export default function Search(props) {
               <MovieThumbnail
                 movie={movie}
                 nominated={nominated}
-                setNominated={setNominated}
                 onClickNominate={onClickNominate}
                 key={movie.imdbID}
               />
@@ -76,6 +78,10 @@ const Section = styled.section`
 
   > .inputDiv {
     max-width: 40%;
+  }
+
+  > span {
+    font-size: 12px;
   }
 
   .resultsDiv {

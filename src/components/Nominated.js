@@ -4,7 +4,7 @@ import styled from "styled-components";
 import NominatedThumbnail from "./NominatedThumbnail";
 
 export default function Nominated(props) {
-  let { nominated } = props;
+  let { nominated, onClickNominate } = props;
 
   if (nominated.length < 1) {
     return <p>You have nominated 0 out of 5 possible movies!</p>;
@@ -15,7 +15,14 @@ export default function Nominated(props) {
       {nominated.map((movie) => {
         console.log("movie id in nominated", movie.imdbID);
 
-        return <NominatedThumbnail imdbID={movie.imdbID} key={movie.imdbID} />;
+        return (
+          <NominatedThumbnail
+            imdbID={movie.imdbID}
+            nominated={nominated}
+            onClickNominate={onClickNominate}
+            key={movie.imdbID}
+          />
+        );
       })}
     </Section>
   );
