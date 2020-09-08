@@ -4,13 +4,18 @@ import styled from "styled-components";
 import helpers from "../utils/helpers";
 
 export default function MovieThumbnail(props) {
-  let { Title, Year, imdbID } = props.movie;
+  let { Title, Year, imdbID, Poster } = props.movie;
   let { nominated, onClickNominate } = props;
 
   console.log("movie", props.movie);
 
   return (
     <Article className="card">
+      {Poster !== "N/A" ? (
+        <img className="card-img-top" src={Poster} alt="Promo poster" />
+      ) : (
+        <div className="noImg">No image available...</div>
+      )}
       <div className="card-body">
         <h5 className="card-title">{Title}</h5>
         <h6 className="card-subtitle mb-2 text-muted">{Year}</h6>
@@ -37,13 +42,24 @@ export default function MovieThumbnail(props) {
 }
 
 const Article = styled.div`
-  margin: 5px 8px;
-  width: 18rem;
+  margin: 5px;
+  width: 15rem;
+
+  > img {
+    max-height: 352px;
+  }
+
   > div {
     > span {
       padding: 2px;
       background-color: lightgreen;
       margin-left: 10px;
+    }
+
+    > .bottom {
+      position: absolute;
+      bottom: 0;
+      margin-bottom: 20px;
     }
   }
 `;

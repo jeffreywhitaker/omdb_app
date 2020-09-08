@@ -28,9 +28,7 @@ export default function Search(props) {
 
   return (
     <Section>
-      <h6>
-        <label>Search for movies by title!</label>
-      </h6>
+      <h5>Search for movies by title!</h5>
       <span className="text-muted">
         Please use complete words for best results.
       </span>
@@ -83,6 +81,7 @@ const Section = styled.section`
 
   > span {
     font-size: 12px;
+    margin: 2px 0;
   }
 
   .resultsDiv {
