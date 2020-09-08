@@ -74,9 +74,10 @@ const Section = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 80px 0;
+  padding: 20px 0;
 
   > .inputDiv {
+    min-width: 200px;
     max-width: 40%;
   }
 
@@ -86,16 +87,7 @@ const Section = styled.section`
 
   .resultsDiv {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
-    width: 100%;
-  }
-
-  @media only screen and (max-width: 500px) {
-    flex-direction: column;
-    div {
-      width: 100%;
-      margin: 0 auto;
-    }
   }
 `;
