@@ -6,6 +6,7 @@ import NominatedThumbnail from "./NominatedThumbnail";
 export default function Nominated(props) {
   let { nominated, onClickNominate } = props;
 
+  // display if nothing nominated
   if (nominated.length < 1) {
     return <p>You have nominated 0 out of 5 possible movies!</p>;
   }

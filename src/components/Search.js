@@ -12,10 +12,12 @@ export default function Search(props) {
   const [searching, setSearching] = useState(false);
   const [err, setErr] = useState("");
 
+  // wait one second after typing ends to update searchInput
   const [debouncedCallback] = useDebouncedCallback((value) => {
     setSearchInput(value);
   }, 1000);
 
+  // run search when searchInput changes
   useEffect(() => {
     if (searchInput) {
       setErr(null);

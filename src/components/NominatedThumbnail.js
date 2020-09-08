@@ -9,12 +9,14 @@ export default function NominatedThumbnail(props) {
 
   const [currMovie, setCurrMovie] = useState(null);
 
+  // fetch the movie on component load
   useEffect(() => {
     ajax.getMovie(imdbID).then((response) => {
       setCurrMovie(response.data);
     });
   }, [imdbID, setCurrMovie]);
 
+  // render a loading card while loading
   if (!currMovie) {
     return (
       <Article className="card">
