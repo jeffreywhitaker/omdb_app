@@ -10,11 +10,16 @@ export default function Search(props) {
 
   const [searchInput, setSearchInput] = useState(null);
   const [searching, setSearching] = useState(false);
+  const [pageInput, setPageInput] = useState(1);
   const [err, setErr] = useState("");
 
   // wait one second after typing ends to update searchInput
-  const [debouncedCallback] = useDebouncedCallback((value) => {
-    setSearchInput(value);
+  const [debouncedCallback] = useDebouncedCallback((value, type) => {
+    if (type === "search") {
+      setSearchInput(value);
+    } else if (type === "page") {
+      setPageInput(value);
+    }
   }, 1000);
 
   // run search when searchInput changes
@@ -22,18 +27,18 @@ export default function Search(props) {
     if (searchInput) {
       setErr(null);
       setSearching(true);
-      ajax.getMovies(searchInput).then((res) => {
+      ajax.getMovies(searchInput, pageInput).then((res) => {
         if (res.data.Error) {
           setErr("No results found - please try again!");
           setSearching(false);
         } else {
-          console.log(res);
+          // console.log(res);
           setMovies(res.data.Search);
           setSearching(false);
         }
       });
     }
-  }, [searchInput, setMovies]);
+  }, [searchInput, pageInput, setMovies]);
 
   return (
     <Section>
@@ -44,7 +49,7 @@ export default function Search(props) {
       <div className="input-group mb-3 inputDiv">
         <div className="input-group-prepend">
           <span className="input-group-text" id="basic-addon1">
-            Search
+            Title
           </span>
         </div>
         <input
@@ -53,7 +58,23 @@ export default function Search(props) {
           placeholder="start typing..."
           aria-label="Search Field"
           aria-describedby="basic-addon1"
-          onChange={(e) => debouncedCallback(e.target.value)}
+          onChange={(e) => debouncedCallback(e.target.value, "search")}
+        />
+      </div>
+      <div className="input-group mb-3 pageDiv">
+        <div className="input-group-prepend">
+          <span className="input-group-text" id="basic-addon2">
+            Page
+          </span>
+        </div>
+        <input
+          type="number"
+          value={pageInput}
+          min={1}
+          className="form-control"
+          aria-label="Page Field"
+          aria-describedby="basic-addon2"
+          onChange={(e) => setPageInput(e.target.value)}
         />
       </div>
       {searching && <div>Searching, please wait...</div>}
@@ -87,6 +108,10 @@ const Section = styled.section`
   > .inputDiv {
     min-width: 200px;
     max-width: 40%;
+  }
+
+  > .pageDiv {
+    width: 150px;
   }
 
   > span {
