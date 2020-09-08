@@ -8,7 +8,7 @@ export default function Nominated(props) {
 
   // display if nothing nominated
   if (nominated.length < 1) {
-    return <p>You have nominated 0 out of 5 possible movies!</p>;
+    return <P>You have nominated 0 out of 5 possible movies!</P>;
   }
 
   return (
@@ -34,4 +34,9 @@ const Section = styled.section`
   justify-content: center;
   flex-wrap: wrap;
   padding-top: 20px;
+`;
+
+const P = styled.p`
+  text-align: center;
+  margin-top: 10px;
 `;
