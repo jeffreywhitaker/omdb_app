@@ -62,7 +62,7 @@ const Article = styled.article`
   width: 15rem;
   margin: 5px;
   > img {
-    max-height: 352px;
+    height: 352px;
   }
   > .noImg {
     display: flex;

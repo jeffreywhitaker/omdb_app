@@ -44,7 +44,7 @@ const Article = styled.div`
   width: 15rem;
 
   > img {
-    max-height: 352px;
+    height: 352px;
   }
 
   > div {
@@ -54,10 +54,19 @@ const Article = styled.div`
       margin-left: 10px;
     }
 
-    > .bottom {
+    /* > .bottom {
       position: absolute;
-      bottom: 0;
-      margin-bottom: 20px;
-    }
+      bottom: 10px;
+    } */
+  }
+
+  > .noImg {
+    display: flex;
+    height: 352px;
+    width: 238px;
+    text-align: center;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid black;
   }
 `;
